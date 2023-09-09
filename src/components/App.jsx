@@ -31,12 +31,11 @@ export const App = () => {
     }
   }, [page, query]);
 
-  const onSubmitQuery = e => {
-    e.preventDefault();
-    if (!e.target[0].value) return;
+  const onSubmitQuery = value => {
+    if (!value) return;
 
     const id = new Date();
-    const query = `${id}/${e.target[0].value}`;
+    const query = `${id}/${value}`;
 
     setQuery(query);
     setCards([]);

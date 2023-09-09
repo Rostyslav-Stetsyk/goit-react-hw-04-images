@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import {
   SearchButton,
@@ -6,17 +7,23 @@ import {
   SearchbarWrapper,
 } from './Searchbar.styled';
 
-export const Searchbar = ({ onSubmitQuery, setQuery, query }) => {
+export const Searchbar = ({ onSubmitQuery }) => {
+  const [value, setValue] = useState('');
   return (
     <SearchbarWrapper>
-      <SearchForm onSubmit={onSubmitQuery}>
+      <SearchForm
+        onSubmit={e => {
+          e.preventDefault();
+          onSubmitQuery(value);
+        }}
+      >
         <SearchInput
           type="text"
           autocomplete="off"
           autoFocus
           placeholder="Search images and photos"
-          value={query}
-          onChange={e => setQuery(e.target.value)}
+          value={value}
+          onChange={e => setValue(e.target.value)}
         />
         <SearchButton type="submit">
           <BiSearch />
