@@ -6,7 +6,7 @@ import {
   SearchbarWrapper,
 } from './Searchbar.styled';
 
-export const Searchbar = ({ onSubmitQuery }) => {
+export const Searchbar = ({ onSubmitQuery, setQuery, query }) => {
   return (
     <SearchbarWrapper>
       <SearchForm onSubmit={onSubmitQuery}>
@@ -15,6 +15,8 @@ export const Searchbar = ({ onSubmitQuery }) => {
           autocomplete="off"
           autoFocus
           placeholder="Search images and photos"
+          value={query}
+          onChange={e => setQuery(e.target.value)}
         />
         <SearchButton type="submit">
           <BiSearch />
